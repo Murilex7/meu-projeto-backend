@@ -37,10 +37,10 @@ app.post("/player/attack", (req: Request, res: Response) => {
 });
 
 //Rota POST para o jogador receber dano
-//Quando o usuario acessar a rota "/player/take-damege", o servidor chamará o método takeDamege() do jogador, passando o valor de dano recebido como parâmetro
-app.post("/player/damege", (req: Request, res: Response) => {
+//Quando o usuario acessar a rota "/player/take-damege", o servidor chamará o método takeDamage() do jogador, passando o valor de dano recebido como parâmetro
+app.post("/player/damage", (req: Request, res: Response) => {
     const { damage } = req.body; // Obtém a quantidade de dano do corpo da requisição
-    const damageMessage = player1.takeDamege(damage);
+    const damageMessage = player1.takeDamage(damage);
     res.json({
         message: damageMessage
     });
@@ -48,14 +48,14 @@ app.post("/player/damege", (req: Request, res: Response) => {
 
 app.post("/player/take-damage", (req: Request, res: Response) => {
   //extrai o valor do dano da reqsição
-  const { damege } = req.body;
+  const { damage } = req.body;
   //Chama o método takeDamage() do jogador
-  const damegeMessage = player1.takeDamege(damege);
+  const damageMessage = player1.takeDamage(damage);
   //Retorna uma resposta JSON com a mensagem do dano
   //Para cliente que fez a reqsição
   res.json({
     //Retorna a mensagem do dano recebido
-    action: damegeMessage,
+    action: damageMessage,
     //Retorna a saúde atual do jogador
     currentHealth: player1.health,
     //Retorna o nivel atual do jogador
@@ -70,5 +70,5 @@ app.listen(PORT, () => {
   console.log("Rotas disponiveis:");
   console.log(`GET http://localhost:${PORT}/player - Obter informaçôes do jogador`);
   console.log(`POST http://localhost:${PORT}/player/attack - jogador realiza um ataque`);
-  console.log(`POST http://localhost:${PORT}/player/take-damege - Jogador recebe dano`);
+  console.log(`POST http://localhost:${PORT}/player/take-damage - Jogador recebe dano`);
 });

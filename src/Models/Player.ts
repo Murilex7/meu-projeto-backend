@@ -15,11 +15,11 @@ export class Player {
 
     //Métodos (Comportamento de Classe) métodos são as "funçôes" que a classe pode executar, ou seja, são os comportamentos de classe, o método "attack" é um método que retorna uma string.
     public attack(): string {
-        const damege = this.level * 10; //Calcula o dano baseado ao nivel do jogador
-        return `${this.name} atacou e causou ${damege} de dano`;
+        const damage = this.level * 10; //Calcula o dano baseado ao nivel do jogador
+        return `${this.name} atacou e causou ${damage} de dano`;
     }
         // o método "takeDamege" é um método que recebe um número como parâmetro
-        public takeDamege(amount: number): string {
+        public takeDamage(amount: number): string {
         this.health -= amount;// Reduz a saude do jogador pelo valor do parâmetro
         //Regra para garantir que a saude não fique negativa
         if (this.health < 0) {
