@@ -6,7 +6,7 @@ export class Player {
     public level: number;
 
     // Construtores ( o construtir é um método especial que executado automaticamente quando a classe é instanciada uma única vez)
-    constructor(name: string, health: number = 100, level: number = 1) {
+    constructor(name: string, health: number = 100, level: number = 1,) {
         // A palavra "this" faz referência a própria classe, ou seja: "Pegue o atributo 'name' da classe Player e atribua o valor do parâmetro 'name' a ele"
         this.name = name;
         this.health = health;
@@ -18,15 +18,35 @@ export class Player {
         const damage = this.level * 10; //Calcula o dano baseado ao nivel do jogador
         return `${this.name} atacou e causou ${damage} de dano`;
     }
-        // o método "takeDamege" é um método que recebe um número como parâmetro
-        public takeDamage(amount: number): string {
-        this.health -= amount;// Reduz a saude do jogador pelo valor do parâmetro
+    // o método "takeDamege" é um método que recebe um número como parâmetro
+    public takeDamage(damage: number): string {
+        this.health -= damage;// Reduz a saude do jogador pelo valor do parâmetro
+
         //Regra para garantir que a saude não fique negativa
         if (this.health < 0) {
             this.health = 0;//Garante que a vida não fique negativa
             return `${this.name} foi derrotado!`;
         }
 
-        return `${this.name} recebeu ${amount} de dano e agora tem ${this.health} de saúde. `;
+        return `${this.name} recebeu ${damage} de dano e agora tem ${this.health} de saúde. `;
     }
+
+
+
+    public takeHealth(health: number): string {
+        this.health += health;
+        const maxHealth = 100;
+        if (this.health > maxHealth) {
+            this.health = maxHealth;
+        }
+        return `${this.name} recuperou ${health} de vida e agora está com ${this.health} de saúde.`;
+
+    }
+    //------------------------------------------------
+    public upLevel(level: number): string {
+        this.level += level;
+        this.health = level * 20;
+        return `${this.name} subiu de nivel!!! Subiu para o nivel ${level} e agora está com ${this.health} de saúde.`;
+    }
+    //------------------------------------------------
 }
